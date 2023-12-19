@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-todolist',
@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
   templateUrl: './todolist.component.html',
   styles: ``
 })
-export class TodolistComponent {
+export class TodolistComponent implements OnInit {
+  todoArray = [];
 
+  constructor() {}
+
+  ngOnInit(): void {
+
+  }
 }
