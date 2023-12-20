@@ -1,17 +1,20 @@
 <div>
     <h1 class="text-3xl font-medium">To-Do List</h1>
-    <form class="flex my-4">
-        <input type="text" placeholder="Enter a task here" class="input input-bordered w-full">
-        <button class="btn btn-primary ml-2" type="button">Add</button>
+    <form class="flex my-4" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <input formControlName="inputTask" type="text" placeholder="Enter a task here" class="input input-bordered w-full">
+        <button class="btn btn-primary ml-2" type="submit" [disabled]="!taskForm.valid">Add</button>
     </form>
     <div class="space-y-2">
         <ng-template ngFor let-todo let-i="index" [ngForOf]="todoArray">
-            <div class="bg-base-200 rounded-xl flex overflow-hidden">
-                <div class="w-[5%] bg-neutral grid place-items-center">
-                    <input type="checkbox" class="checkbox checkbox-secondary bg-base-100 checkbox-lg">
-                </div>
+            <div class="bg-base-200 rounded-xl flex justify-between overflow-hidden">
                 <div class="flex flex-col p-4">
                     <h2 class="text-xl">{{ todo.task_title }}</h2> 
+                </div>
+                <div class="bg-neutral grid place-items-center p-4 space-y-2">
+                    <input type="checkbox" class="checkbox checkbox-lg bg-base-100 [--chkbg:oklch(var(--su))] [--chkfg:oklch(var(--b1))]" />
+                    <ng-template [ngIf]="todo.task_complete == true">
+                        <button class="btn btn-square btn-sm btn-error text-base-100">D</button>
+                    </ng-template>
                 </div>
             </div>
         </ng-template>
