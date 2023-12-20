@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "nodemon": "nodemon index.js",
+    "redis": "nodemon redis.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
