@@ -1,14 +1,19 @@
 const express = require('express');
 const uuid = require('uuid')
 const redis = require('redis');
+const cors = require('cors');
+const bp = require('body-parser')
+
 const app = express();
 const client = redis.createClient();
 
 // Connect to Redis
 client.connect().then(() => console.log('Connected to Redis')).catch(err => console.error('Redis connection error:', err));
 
-app.use(express.json())
-// API endpoints
+app.use(express.json());
+app.use(cors());
+app.use(bp.json());
+
 app.get('/todos', async (req, res) => {
   try {
     const todos = await client.hVals('todos');
@@ -29,7 +34,7 @@ app.post('/todos', async (req, res) => {
       return;
     }
 
-    const todo_id = uuid.v4();
+    const todo_id = uuid.v1();
 
     await client.hSet('todos', task_title, JSON.stringify({
       id: todo_id,
@@ -45,6 +50,5 @@ app.post('/todos', async (req, res) => {
 });
 
 
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server listening on port ${port}`));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
