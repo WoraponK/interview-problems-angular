@@ -1,22 +1,47 @@
 <div>
     <h1 class="text-3xl font-medium">To-Do List</h1>
     <form class="flex my-4" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-    <input formControlName="inputTask" type="text" placeholder="Enter a task here" class="input input-bordered w-full">
+        <input formControlName="inputTask" type="text" placeholder="Enter a task here"
+            class="input input-bordered w-full">
         <button class="btn btn-primary ml-2" type="submit" [disabled]="!taskForm.valid">Add</button>
     </form>
-    <div class="space-y-2">
-        <ng-template ngFor let-todo let-i="index" [ngForOf]="todoArray">
-            <div class="bg-base-200 rounded-xl flex justify-between overflow-hidden">
-                <div class="flex flex-col p-4">
-                    <h2 class="text-xl">{{ todo.task_title }}</h2> 
-                </div>
-                <div class="bg-neutral grid place-items-center p-4 space-y-2">
-                    <input type="checkbox" class="checkbox checkbox-lg bg-base-100 [--chkbg:oklch(var(--su))] [--chkfg:oklch(var(--b1))]" />
-                    <ng-template [ngIf]="todo.task_complete == true">
-                        <button class="btn btn-square btn-sm btn-error text-base-100">D</button>
-                    </ng-template>
-                </div>
-            </div>
-        </ng-template>
+    <div class="grid grid-cols-2 space-x-8 mt-8">
+        <div class="space-y-4">
+            <h2>Incompleted tasks</h2>
+            <ng-template ngFor let-todo let-i="index" [ngForOf]="todoArray">
+                <ng-template [ngIf]="todo.task_complete == false">
+                    <div class="bg-base-200 rounded-xl flex justify-between overflow-hidden">
+                        <div class="flex flex-col p-4">
+                            <h2 class="text-xl">{{ todo.task_title }}</h2>
+                        </div>
+                        <div class="bg-neutral grid place-items-center p-4 space-y-2">
+                            <input (change)="updateTask(todo)" type="checkbox"
+                                class="checkbox checkbox-lg bg-base-100 [--chkbg:oklch(var(--su))] [--chkfg:oklch(var(--b1))]" />
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-template>
+        </div>
+        <div class="space-y-4">
+            <h2>Completed tasks</h2>
+            <ng-template ngFor let-todo let-i="index" [ngForOf]="todoArray">
+                <ng-template [ngIf]="todo.task_complete == true">
+                    <div class="bg-base-200 rounded-xl flex justify-between overflow-hidden">
+                        <div class="flex flex-col p-4">
+                            <h2 class="text-xl">{{ todo.task_title }}</h2>
+                        </div>
+                        <div class="bg-neutral flex justify-center items-center p-2 space-x-2">
+                            <input (change)="updateTask(todo)" checked type="checkbox"
+                                class="checkbox checkbox-lg bg-base-100 [--chkbg:oklch(var(--su))] [--chkfg:oklch(var(--b1))]" />
+                            <button (click)="deleteTask(todo)" class="btn btn-square btn-sm btn-error text-base-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-template>
+        </div>
     </div>
 </div>
