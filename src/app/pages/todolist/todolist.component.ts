@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { TodoObject } from './todolist';
 import { NgForOf, NgIf } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 
 const api = 'http://localhost:3000'
 
