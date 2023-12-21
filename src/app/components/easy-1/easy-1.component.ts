@@ -15,11 +15,11 @@ export class Easy1Component implements OnInit{
 
   ngOnInit(): void {
     for (let i = 1; i <= 100; i++) {
-      if ( i%3 == 0 && i%5 == 0 ) {
+      if ((i % 3 == 0) && (i % 5 == 0)) {
         this.numbers.push("FizzBuzz");
-      } else if ( i%3 == 0 ) {
+      } else if ((i % 3) == 0) {
         this.numbers.push("Fizz")
-      } else if ( i%5 == 0 ) {
+      } else if ((i % 5) == 0) {
         this.numbers.push("Buzz")
       } else {
         this.numbers.push(i)
