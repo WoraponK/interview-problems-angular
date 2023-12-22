@@ -51,6 +51,8 @@ export class Easy3Component implements OnInit {
     this.pattern3_4(number);
     this.pattern3_5(number);
     this.pattern3_6(number);
+
+    this.inputForm.reset();
   }
 
   pattern3_1(n: number) {
