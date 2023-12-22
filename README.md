@@ -15,8 +15,6 @@ cd interview-problems-angular
 
 ```bash
 npm install
-or
-npm i
 ```
 
 ## Development server
