@@ -42,6 +42,7 @@ export class Medium1Component implements OnInit {
     const primeArrayString = primeArray.join(" ");
 
     this.answers.push(number + ' -> ' + primeArrayString)
+    this.inputForm.reset();
   }
 
   isPrime(n: number): boolean {
