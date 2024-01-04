@@ -35,7 +35,7 @@ app.get('/todos', async (req, res) => {
 
 app.post('/todos', async (req, res) => {
   try {
-    const { task_title, task_complete = false } = req.body; // Use default value for task_complete
+    const { task_title, task_complete = false } = req.body; 
 
     if (!task_title) {
       res.status(400).send({ error: 'Invalid todo data: task_title is required' });

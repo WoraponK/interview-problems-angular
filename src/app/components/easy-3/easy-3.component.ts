@@ -51,8 +51,6 @@ export class Easy3Component implements OnInit {
     this.pattern3_4(number);
     this.pattern3_5(number);
     this.pattern3_6(number);
-
-    this.inputForm.reset();
   }
 
   pattern3_1(n: number) {
@@ -174,32 +172,32 @@ export class Easy3Component implements OnInit {
         }
       }
 
-        for (let j = 0; j < n - i; j++) {
-          this.output3_6 += 'B';
-        }
-
-        this.output3_6 += '\n';
+      for (let j = 0; j < n - i; j++) {
+        this.output3_6 += 'B';
       }
 
-      for (let i = n - 1; i >= 1; i--) {
-        for (let j = 1; j <= n - i; j++) {
-          this.output3_6 += 'C';
-        }
-
-        for (let j = 1; j <= 2 * i - 1; j++) {
-          if (j === 1 || j === 2 * i - 1) {
-            this.output3_6 += '+';
-          } else {
-            this.output3_6 += 'E'
-          }
-        }
-
-        for (let j = 0; j < n - i; j++) {
-          this.output3_6 += 'D';
-        }
-        this.output3_6 += '\n';
-      }
+      this.output3_6 += '\n';
     }
 
+    for (let i = n - 1; i >= 1; i--) {
+      for (let j = 1; j <= n - i; j++) {
+        this.output3_6 += 'C';
+      }
+
+      for (let j = 1; j <= 2 * i - 1; j++) {
+        if (j === 1 || j === 2 * i - 1) {
+          this.output3_6 += '+';
+        } else {
+          this.output3_6 += 'E'
+        }
+      }
+
+      for (let j = 0; j < n - i; j++) {
+        this.output3_6 += 'D';
+      }
+      this.output3_6 += '\n';
+    }
   }
+
+}
 
